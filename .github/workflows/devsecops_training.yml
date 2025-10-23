@@ -36,5 +36,5 @@ jobs:
     needs: Build
     steps:
       - name: Test de l'app
-        run: docker run -rm cats-facts:1.0
+        run: docker run --rm cats-facts:1.0
 
