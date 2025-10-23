@@ -36,5 +36,5 @@ jobs:
     needs: Build
     steps:
       - name: Test de l'app
-        run: python3 app/main.py
+        run: docker run -rm cats-facts:1.0
 
