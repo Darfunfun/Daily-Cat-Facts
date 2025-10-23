@@ -1,0 +1,38 @@
+# Lorsque je push sur ma branche features
+# Je veux que mon container se crée
+# Je veux que le code dans ce container soit executé
+# Je veux savoir si ce code a été correctement executé, et voir le resultat si possible
+# Je veux testé si des failles de sécurité existe dans : 
+#   - mon Dockerfile, 
+#   - mon container, 
+#   - mon appli python
+
+# Si tout cela est OK, alors je veux :
+# - pull request sur main, mais me laisser merge manuellement (check humain)
+# - push mon app sur le docker hub
+
+# Plus tard, je voudrais déployer sur AWS (je n'ai pas encore le compte associé)
+
+
+name: DevSecOps Training
+
+on:
+  push:
+    branches:
+      - features
+
+jobs: 
+  build:
+    #container: python:3.13.7-alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: docker build -t cats-facts:1.0
+  
+  test:
+    needs: Build
+    steps:
+      - name: Test de l'app
+        run: python3 app/main.py
+
+      
