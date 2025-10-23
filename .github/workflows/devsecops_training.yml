@@ -26,8 +26,10 @@ jobs:
     #container: python:3.13.7-alpine
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout du Repo (DL mon code)
+        uses: actions/checkout@v3
       - name: Build
-        run: docker build -t cats-facts:1.0 ../Dockerfile
+        run: docker build -t cats-facts:1.0 .
   
   test:
     runs-on: ubuntu-latest
