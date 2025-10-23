@@ -33,7 +33,9 @@ jobs:
 
         #Scan Code Source
       - name: Scan SAST
-        uses: returntocorp/semgrep-action@v1
+        # uses: returntocorp/semgrep-action@v1 # déprecier !
+        run: pip install semgrep
+        run: semgrep --config=auto
 
         #Build
       - name: Build
