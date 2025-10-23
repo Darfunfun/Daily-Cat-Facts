@@ -26,13 +26,43 @@ jobs:
     #container: python:3.13.7-alpine
     runs-on: ubuntu-latest
     steps:
+
+        #Checkout (DL du code)
+      - name: Checkout du Repo
+        uses: actions/checkout@v3
+
+        #Build
       - name: Build
-        run: docker build -t cats-facts:1.0
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0 .
+
+        #Dockerhub
+      - name: Connexion au Dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+        #Push
+      - name: Push sur Dockerhub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0
+
   
   test:
     runs-on: ubuntu-latest
     needs: Build
     steps:
+        #Dockerhub
+      - name: Connexion au Dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+        #Pull
+      - name: Pull Daily Cats facts
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0
+
+        #Test
       - name: Test de l'app
-        run: python3 app/main.py
+        run: docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0
 
