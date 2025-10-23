@@ -31,9 +31,20 @@ jobs:
       - name: Checkout du Repo
         uses: actions/checkout@v3
 
+        #Scan Code Source
+      - name: Scan SAST
+        uses: returntocorp/semgrep-action
+        run: sast-scan
+
         #Build
       - name: Build
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0 .
+
+        #Scan Container
+      - name: Scan Trivy
+        uses: aquasecurity/trivy-action
+        with:
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0
 
         #Dockerhub
       - name: Connexion au Dockerhub
