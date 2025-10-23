@@ -34,7 +34,6 @@ jobs:
         #Scan Code Source
       - name: Scan SAST
         uses: returntocorp/semgrep-action
-        run: sast-scan
 
         #Build
       - name: Build
