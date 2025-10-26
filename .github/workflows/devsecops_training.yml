@@ -1,19 +1,3 @@
-# Lorsque je push sur ma branche features
-# Je veux que mon container se crée
-# Je veux que le code dans ce container soit executé
-# Je veux savoir si ce code a été correctement executé, et voir le resultat si possible
-# Je veux testé si des failles de sécurité existe dans : 
-#   - mon Dockerfile, 
-#   - mon container, 
-#   - mon appli python
-
-# Si tout cela est OK, alors je veux :
-# - pull request sur main, mais me laisser merge manuellement (check humain)
-# - push mon app sur le docker hub
-
-# Plus tard, je voudrais déployer sur AWS (je n'ai pas encore le compte associé)
-
-
 name: DevSecOps Training
 
 on:
@@ -31,9 +15,19 @@ jobs:
       - name: Checkout du Repo
         uses: actions/checkout@v3
 
+        #Scan Code Source
+      - name: Scan SAST
+        run: pip install semgrep && semgrep --config=auto
+
         #Build
       - name: Build
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0 .
+
+        #Scan Container
+      - name: Scan Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/daily-cats-facts:1.0
 
         #Dockerhub
       - name: Connexion au Dockerhub
