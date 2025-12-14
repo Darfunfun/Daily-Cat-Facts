@@ -21,3 +21,7 @@ Si tout cela est OK, alors :
 
 Une fois tout cela OK : 
 - [ ] Déployer sur AWS -> Etape suivante, apres passage du runner vers container
+
+
+Ameliorations : 
+- [x] Passage à une application web avec Flask + JS
