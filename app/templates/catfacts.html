@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cat Facts</title>
+</head>
+<body>
+    <h1>Cat Facts 😺</h1>
+    <button onclick="getTheCatFact()">Get a Cat Fact</button>
+    <p id="showTheFact"></p>
+
+
+    <p><a href="/">Retour à l'accueil</a></p>
+
+    <script>
+        function getTheCatFact() {
+            fetch("/catfacts/fact") // Recupere le body catfacts jsonifié
+            .then(myCatRequest => myCatRequest.json()) // recupere la response, lis le body du response et extrait le json
+            .then(data => document.getElementById("showTheFact").innerHTML = data.fact) // recupere le json du .then avant, et affiche la valeur de la clef fact dans le <p>
+        }
+    </script>
+</body>
+</html>
