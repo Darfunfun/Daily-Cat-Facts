@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Cat Facts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='catfacts.css') }}">
 </head>
 <body>
     <h1>Cat Facts 😺</h1>
-    <button onclick="getTheCatFact()">Get a Cat Fact</button>
+    <button onclick="getTheCatFact()" class="catfact-btn">Get a Cat Fact</button>
     <p id="showTheFact"></p>
 
 
@@ -14,8 +15,8 @@
     <script>
         function getTheCatFact() {
             fetch("/catfacts/fact") // Recupere le body catfacts jsonifié
-            .then(myCatRequest => myCatRequest.json()) // recupere la response, lis le body du response et extrait le json
-            .then(data => document.getElementById("showTheFact").innerHTML = data.fact) // recupere le json du .then avant, et affiche la valeur de la clef fact dans le <p>
+            .then(responseEnvelop => responseEnvelop.json()) // Ouvre l’enveloppe HTTP 👉 récupère un objet JS
+            .then(dataParsedinJS => document.getElementById("showTheFact").innerHTML = dataParsedinJS.fact) // recupere le json du .then avant, et affiche la valeur de la clef fact dans le <p>
         }
     </script>
 </body>

@@ -21,9 +21,10 @@ def catfactHome():
 @app.route("/catfacts/fact")
 def getCatFact():
     myCatRequest = requests.get("https://catfact.ninja/fact", timeout=5) # Affiche un json, avec fact: "str" et length: int
-    myCatRequest = myCatRequest.json()
+    myCatRequest = myCatRequest.json() # .json() ouvre l’enveloppe de Response et transforme le body JSON (texte) en dict Python
     #print(myCatRequest)
-    return jsonify(myCatRequest) # retourne le body HTTP de type json
+    return jsonify(myCatRequest) # transforme le dict Python en JSON texte, crée une réponse HTTP, retourne le body HTTP de type json
+
 
 
 app.run(debug=True)

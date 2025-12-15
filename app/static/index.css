@@ -1,0 +1,72 @@
+/* Reset basique */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fond et corps de page */
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Titre principal */
+h1 {
+    font-size: 3em;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Liste des liens */
+ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* Liens */
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+/* Hover sur les liens */
+ul li a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Animation fadeIn */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    ul {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

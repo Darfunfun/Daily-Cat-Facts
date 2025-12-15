@@ -1,0 +1,102 @@
+/* --- Style global --- */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #fff8e1; /* un fond doux */
+  color: #2b2b2b;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 80px;
+  text-align: center;
+}
+
+/* --- Titre --- */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #ff9800;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* --- Bouton (ton style existant) --- */
+.catfact-btn {
+  background: linear-gradient(135deg, #ffb347, #ffcc33);
+  color: #2b2b2b;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.catfact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ffcc33, #ffb347);
+}
+
+.catfact-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.catfact-btn:focus-visible {
+  outline: 3px solid #ff9800;
+  outline-offset: 4px;
+}
+
+/* --- Paragraphe du fait de chat --- */
+#showTheFact {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px 20px;
+  background: #fff3e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+/* --- Lien de retour --- */
+a {
+  display: inline-block;
+  margin-top: 40px;
+  text-decoration: none;
+  color: #ff9800;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #ff5722;
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  #showTheFact {
+    font-size: 1.1rem;
+    padding: 12px 16px;
+  }
+  
+  .catfact-btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
