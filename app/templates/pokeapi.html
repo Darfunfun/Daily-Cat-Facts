@@ -5,17 +5,27 @@
 </head>
 <body>
     <h1>Poké API ⚡</h1>
-    <input type="text" id="pokemonName" placeholder="Entrez un Pokémon">
-    <button onclick="getPokemon()">Afficher votre Pokémon</button>
-
-    <h2 id="name"></h2>
-    <img id="sprite" src="" alt="" />
-    <ul id="stats"></ul>
-
+    <input type="text" id="inputPokeName" placeholder="Type your Pokemon's name">
+    <button id="buttonValidate" onclick="getPokemon()">Validate</button>
+    
+    <p id="pokemonName"></p>
+    <p id="pokemonType"></p>
+    <p id="pokemonSprite"></p>
+    
     <p><a href="/">Retour à l'accueil</a></p>
 
     <script>
-        
+        function getPokemon() {
+            const inputPokeName = document.getElementById("inputPokeName").value
+
+            fetch("/pokeapi/getpokemon?name=" + inputPokeName)
+            .then(responseEnvelop => responseEnvelop.json())
+            .then(showPokemon => {
+                console.log(showPokemon)
+                document.getElementById("pokemonName").innerHTML = showPokemon.name
+            });
+        }
     </script>
+
 </body>
 </html>

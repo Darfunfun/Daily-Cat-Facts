@@ -2,22 +2,54 @@
 <html>
 <head>
     <title>Cat Facts</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='catfacts.css') }}">
+    <link rel="stylesheet" href="../static/catfacts.css">
 </head>
 <body>
     <h1>Cat Facts 😺</h1>
-    <button onclick="getTheCatFact()" class="catfact-btn">Get a Cat Fact</button>
+    <button onclick="appelPython()" class="catfact-btn">Obtenir un fait sur les chats</button>
+    <p id="showTheFact">Ici s'affichera mon catFact</p>
+
+
+    <script>
+        function appelPython() {
+            fetch("/catfacts_guardia/fact") // Object Response
+            .then(enveloppe => enveloppe.json()) // Object JS
+            .then(lettre => document.getElementById("showTheFact").innerHTML = lettre.fact)
+
+            // Et si on veut traduire : 
+            // https://libretranslate.com/?source=auto&target=en&q=bonjour
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <button onclick="getTheCatFact()" class="catfact-btn">Get a Cat Fact</button>
     <p id="showTheFact"></p>
 
 
-    <p><a href="/">Retour à l'accueil</a></p>
+    <p><a href="/">Retour à l'accueil</a></p> -->
 
+
+
+
+
+
+
+<!-- 
     <script>
         function getTheCatFact() {
             fetch("/catfacts/fact") // Recupere le body catfacts jsonifié
-            .then(responseEnvelop => responseEnvelop.json()) // Ouvre l’enveloppe HTTP 👉 récupère un objet JS
+            .then(responseEnvelop => responseEnvelop.json()) // Ouvre l’enveloppe HTTP, puis recupere un objet JS
             .then(dataParsedinJS => document.getElementById("showTheFact").innerHTML = dataParsedinJS.fact) // recupere le json du .then avant, et affiche la valeur de la clef fact dans le <p>
         }
-    </script>
+    </script> -->
 </body>
 </html>
